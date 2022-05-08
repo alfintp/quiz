@@ -11,9 +11,14 @@ const routes = [
     component: LandingPage,
   },
   {
-    path: "/ZoonimaL",
-    name: "ZoonimaL",
+    path: "/zoonimal",
+    name: "zoonimal",
     component: () => import("../views/ZoonimaL.vue"),
+  },
+  {
+    path: "/animal",
+    name: "animal",
+    component: () => import("../views/anAnimal.vue"),
   },
 ];
 

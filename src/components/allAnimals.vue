@@ -13,17 +13,17 @@
         Belum Selesai
       </label>
     </div>
+    <h1>
+      <router-link to="/">Home Page</router-link>
+    </h1>
+    <h1>
+      <router-link to="animal">See Animal</router-link>
+    </h1>
     <div class="content">
-      <!-- <button @click="isDone">Try it</button> -->
-      <div>
-        <span :class="isDone">David Smith</span>
-        <input type="checkbox" v-model="active" />
-      </div>
-      <!-- <h1 ref="oew">wow</h1> -->
       <v-row justify="center" align="center">
         <v-col v-for="animal in animals" :key="animal.id" cols="12" md="4">
           <v-card height="200px text-center" class="card ma-2" @click="onClick">
-            <v-img class="img ma-auto" ref="isDone" :class="isDone" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+            <v-img class="img ma-auto" :class="isDone" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
           </v-card>
         </v-col>
       </v-row>
@@ -32,15 +32,8 @@
 </template>
 
 <style scoped>
-.img {
-  /* filter: brightness(0%); */
-
-  /* max-width: auto;
-  max-height: 200px; */
-}
 .active {
   filter: brightness(0%);
-  /* color: yellow; */
 }
 
 .container {
@@ -65,26 +58,16 @@
 <script>
 import gql from "graphql-tag";
 export default {
-  name: "HelloWorld",
+  name: "AllAnimals",
 
   data: () => ({
     is_done: false,
-    fillQuiz: "",
-    allAnimals: [],
     active: true,
   }),
   methods: {
     onClick() {
       alert("mantap");
     },
-    // isDone() {
-    // this.$refs.isDone.style.filter = "brightness(0%)";
-    // document.getElementById("oew").style.backgroundColor = "black";
-    // document.getElementById("oew").style.color = "red";
-    // this.$refs.oew.style.color = "red";
-    // if (this.is_done === false) {
-    // }
-    // },
   },
   computed: {
     isDone: function () {

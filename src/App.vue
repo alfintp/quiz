@@ -1,9 +1,10 @@
 <template>
   <v-app>
-    <v-app-bar app color="black" dark>
-      <div class="d-flex align-center">
-        <v-img alt="Logo" class="shrink mr-2 rounded-circle" contain src="../src/assets/bull.png" transition="scale-transition" width="40" />
-      </div>
+    <v-app-bar app elevation="0" class="bar" color="gray">
+      <v-subheader>
+        <img src="./assets/logo/logo.png" width="100px" alt="logo" />
+        <h1 class="subheader">ZoonimaL</h1></v-subheader
+      >
     </v-app-bar>
 
     <v-main class="main">
@@ -14,8 +15,18 @@
 
 <style>
 #app {
-  background: url("./assets/main.jpg") no-repeat center center fixed !important;
   background-size: cover;
+}
+.subheader {
+  color: #1c996d;
+}
+
+h1 {
+  font-family: "Montserrat";
+}
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"), url(https://fonts.googleapis.com/css?family=Montserrat) format("truetype");
 }
 </style>
 <script>
