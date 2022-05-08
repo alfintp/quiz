@@ -10,9 +10,13 @@
             <h1 class="mb-6">ZoonimaL</h1>
             <h4 class="mb-6">Many animals disappeared in the zoo, find them all and become a hero</h4>
             <router-link style="text-decoration: none; color: inherit" to="zoonimal">
-              <v-btn color="orange"><span>LET'S GO </span> </v-btn>
+              <v-btn color="orange"><span>LET'S GO</span> </v-btn>
             </router-link>
-            <v-btn class="ml-4" color="blue"><span>HOW TO PLAY </span> </v-btn>
+
+            <!-- DIALOG -->
+            <howToPlay></howToPlay>
+
+            <!-- DIALOG -->
           </div>
         </v-col>
       </v-row>
@@ -21,13 +25,20 @@
       <h1>
         <router-link to="zoonimal">Play Game</router-link>
       </h1>
-      <h1>
-        <router-link to="animal">See Animal</router-link>
-      </h1>
     </div>
   </div>
 </template>
+<script>
+import howToPlay from "../components/howToPlay";
 
+export default {
+  name: "ZoonimaL",
+
+  components: {
+    howToPlay,
+  },
+};
+</script>
 <style scoped>
 .wrapper {
   background-color: white;
@@ -40,9 +51,7 @@
   padding: 0;
   background-image: url(../assets/bg/main.jpg);
 }
-.content-image {
-  /* background-color: yellow; */
-}
+
 .rat {
   filter: brightness(0%);
   transition: 1s ease-out;

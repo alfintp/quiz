@@ -14,9 +14,6 @@
 </template>
 
 <style>
-#app {
-  background-size: cover;
-}
 .subheader {
   color: #1c996d;
 }

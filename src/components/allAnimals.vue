@@ -1,29 +1,16 @@
 <template>
   <v-container class="container">
-    <div class="pb-5 text-center">
-      <label> <input v-model="is_done" type="radio" :value-type="Boolean" /> Semua </label>
-
-      <label>
-        <input v-model="is_done" type="radio" :value="true" />
-        Selesai
-      </label>
-
-      <label>
-        <input v-model="is_done" type="radio" :value="false" />
-        Belum Selesai
-      </label>
-    </div>
     <h1>
       <router-link to="/">Home Page</router-link>
     </h1>
-    <h1>
-      <router-link to="animal">See Animal</router-link>
-    </h1>
+
     <div class="content">
       <v-row justify="center" align="center">
-        <v-col v-for="animal in animals" :key="animal.id" cols="12" md="4">
-          <v-card height="200px text-center" class="card ma-2" @click="onClick">
-            <v-img class="img ma-auto" :class="isDone" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+        <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
+          <v-card height="200px text-center" class="card ma-2" @click="toDetail(`${index}`)">
+            <v-img v-if="animal.is_done == true" class="img ma-auto" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+            <v-img v-else class="img ma-auto active" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+            <p>{{ animal.is_done }}</p>
           </v-card>
         </v-col>
       </v-row>
@@ -61,25 +48,16 @@ export default {
   name: "AllAnimals",
 
   data: () => ({
-    is_done: false,
     active: true,
+    x: [1],
   }),
-  methods: {
-    onClick() {
-      alert("mantap");
-    },
-  },
-  computed: {
-    isDone: function () {
-      return this.is_done ? "" : "active";
-    },
-  },
   apollo: {
     animals: {
       query() {
         return gql`
-          query animals($is_done: Boolean) {
-            animals(where: { is_done: { _eq: $is_done } }) {
+          query animals {
+            animals {
+              id
               name
               is_done
               img
@@ -87,12 +65,21 @@ export default {
           }
         `;
       },
-      variables() {
-        return {
-          is_done: this.is_done,
-        };
-      },
     },
+  },
+  methods: {
+    toDetail(id) {
+      this.$router.push(id);
+    },
+  },
+  computed: {
+    //   isDone: function () {
+    //     for (let i = 0; i < this.animals.length; i++) {
+    //       return this.animals[i].is_done ? "active" : "";
+    //     }
+    //     return this.animals.is_done;
+    //   },
+    // },
   },
 };
 </script>
