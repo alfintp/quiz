@@ -1,24 +1,25 @@
 <template>
-  <v-container class="container">
-    <h1>
-      <router-link to="/">Home Page</router-link>
-    </h1>
-
-    <div class="content">
-      <v-row justify="center" align="center">
-        <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
-          <v-card height="200px text-center" class="card ma-2" @click="toDetail(`${index}`)">
-            <v-img v-if="animal.is_done == true" class="img ma-auto" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
-            <v-img v-else class="img ma-auto active" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
-            <p>{{ animal.is_done }}</p>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
-  </v-container>
+  <div class="bg">
+    <v-container class="container">
+      <div class="content">
+        <v-row justify="center" align="center">
+          <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
+            <v-card height="200px text-center" class="card ma-2" @click="toDetail(`${index}`)">
+              <v-img v-if="animal.is_done == true" class="img ma-auto" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+              <v-img v-else class="img ma-auto active" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
+              <p>{{ animal.is_done }}</p>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <style scoped>
+.bg {
+  background-color: #ffef82;
+}
 .active {
   filter: brightness(0%);
 }
@@ -31,14 +32,11 @@
   position: relative;
   overflow: hidden;
 }
+
 .card:hover {
-  background-color: rgb(170, 170, 170);
+  background-color: #82954b;
   transition: 0.5s;
   transform: scale(1.05);
-}
-
-.tes:hover {
-  background-color: black;
 }
 </style>
 
