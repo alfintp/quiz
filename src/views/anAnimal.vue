@@ -132,6 +132,7 @@
   overflow: hidden;
   background-color: rgba(235, 235, 235, 0.5);
 }
+
 .true {
   letter-spacing: 15px;
 }
@@ -183,17 +184,14 @@ export default {
         mutation: gql`
           mutation ($id: Int!) {
             update_animals_by_pk(pk_columns: { id: $id }, _set: { is_done: true }) {
-              returning {
-                is_done
-              }
+              id
+              is_done
+              name
             }
           }
         `,
         variables: { id },
       });
-    },
-    alert() {
-      // return (this.dialog1 = true);
     },
 
     notification() {
@@ -202,9 +200,9 @@ export default {
       } else if ((this.answer.length != 0) & (this.answer != this.animals[this.idList].name.toUpperCase())) {
         return (this.dialogWrong = true);
       } else {
-        return (this.dialogTrue = true);
+        this.correctAnswer(this.animals[this.idList].id);
 
-        // this.correct(this.animals[this.idList]);
+        return (this.dialogTrue = true);
       }
     },
 
