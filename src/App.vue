@@ -16,6 +16,8 @@
 </template>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap");
+
 .aw {
   margin-right: 2000px;
 }
@@ -23,8 +25,9 @@
   color: #1c996d;
 }
 
-h1 {
-  font-family: "Montserrat";
+.subheader {
+  letter-spacing: 2px;
+  font-family: "Irish Grover", cursive;
 }
 @font-face {
   font-family: "Montserrat";

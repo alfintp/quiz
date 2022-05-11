@@ -8,15 +8,19 @@
         <v-col class="content-title text-start" cols="12" md="6">
           <div class="title-wrapper">
             <h1 class="mb-6">ZoonimaL</h1>
-            <h4 class="mb-6">Many animals disappeared in the zoo, find them all and become a hero</h4>
-            <div class="d-flex justify-space-between">
-              <router-link style="text-decoration: none; color: inherit" to="zoonimal">
-                <v-btn color="orange"><span>LET'S GO</span> </v-btn>
-              </router-link>
+            <div class="desc">
+              <h4 class="mb-6">Many animals disappeared in the zoo, find them all and become a hero</h4>
 
-              <!-- DIALOG -->
-              <howToPlay></howToPlay>
+              <div class="d-flex justify-space-between">
+                <router-link style="text-decoration: none; color: inherit" to="zoonimal">
+                  <v-btn color="orange"><span>LET'S GO</span> </v-btn>
+                </router-link>
+
+                <!-- DIALOG -->
+                <howToPlay></howToPlay>
+              </div>
             </div>
+
             <!-- DIALOG -->
           </div>
         </v-col>
@@ -39,13 +43,11 @@ export default {
 howToPlay .tutorial {
   height: 200px;
 }
+
 .wrapper {
   height: 910px;
 }
 
-v-btn {
-  height: 200px;
-}
 .welcome {
   height: 917px;
   margin: 0;
@@ -57,6 +59,7 @@ v-btn {
   filter: brightness(0%);
   transition: 1s ease-out;
   transition-delay: 1s;
+  box-shadow: black;
 }
 .rat:hover {
   filter: brightness(100%);
@@ -66,11 +69,20 @@ v-btn {
   /* background-color: goldenrod; */
 }
 .title-wrapper {
-  width: 350px;
+  width: 550px;
 }
 .title-wrapper h1 {
-  font-size: 70px;
+  font-size: 100px;
+  padding-bottom: 60px;
+  font-family: "Irish Grover", cursive;
   color: brown;
+  letter-spacing: 10px;
+}
+.desc {
+  width: 400px;
+}
+.desc h4 {
+  font-family: "Montserrat";
 }
 .title-wrapper h4 {
   font-size: 30px;

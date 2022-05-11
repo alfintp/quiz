@@ -2,7 +2,12 @@
   <div class="bg">
     <v-container class="container">
       <div class="content">
-        <v-row justify="center" align="center">
+        <div class="title text-center"><h1>ZoonimaL</h1></div>
+        <div class="menu d-flex justify-space-between">
+          <h2 class="ml-2">Found : y / x</h2>
+          <v-btn color="orange mr-2" @click="restart">restart</v-btn>
+        </div>
+        <v-row justify="center" class="mt-1" align="center">
           <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
             <v-card height="200px text-center" class="card ma-2" @click="toDetail(`${index}`)">
               <v-img v-if="animal.is_done == true" class="img ma-auto" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
@@ -23,7 +28,18 @@
 .active {
   filter: brightness(0%);
 }
-
+.title {
+  margin-top: 40px;
+}
+.title h1 {
+  font-size: 80px;
+  font-family: "Irish Grover", cursive;
+  color: brown;
+  letter-spacing: 10px;
+}
+.menu {
+  margin-top: 50px;
+}
 .container {
   width: 70%;
 }
@@ -67,17 +83,11 @@ export default {
   },
   methods: {
     toDetail(id) {
-      this.$router.push(id);
+      this.$router.push({ path: `/zoonimal/${id}` });
     },
-  },
-  computed: {
-    //   isDone: function () {
-    //     for (let i = 0; i < this.animals.length; i++) {
-    //       return this.animals[i].is_done ? "active" : "";
-    //     }
-    //     return this.animals.is_done;
-    //   },
-    // },
+    restart() {
+      alert("BELOM DISETTING :P");
+    },
   },
 };
 </script>

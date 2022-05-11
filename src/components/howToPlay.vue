@@ -6,7 +6,7 @@
     <template v-slot:default="dialog">
       <v-card>
         <v-toolbar color="#BABD42" dark>Welcome to ZoonimaL Champ !</v-toolbar>
-        <h1 class="text-center mt-2">TUTORIAL</h1>
+        <h1 class="text-center mt-2 tutor">TUTORIAL</h1>
         <div class="d-flex justify-center align-stretch mt-3">
           <div class="text-center col">
             <img src="../assets/rat/hellow.png" class="" alt="hellow" width="200px" />
@@ -39,7 +39,12 @@
   </v-dialog>
 </template>
 
-<style scoped></style>
+<style scoped>
+.tutor {
+  font-family: "Montserrat";
+  letter-spacing: 3px;
+}
+</style>
 
 <script>
 export default {

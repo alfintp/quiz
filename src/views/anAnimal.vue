@@ -3,25 +3,24 @@
     <v-container class="container">
       <v-card class="card text-center">
         <v-flex class="d-flex justify-end">
-          <router-link style="text-decoration: none; color: inherit" to="zoonimal">
+          <router-link style="text-decoration: none; color: inherit" to="/zoonimal">
             <v-icon size="40px" class="close" color="#ff0000"> mdi-close-box </v-icon>
           </router-link>
         </v-flex>
-        <!-- v-if -->
+        <!-- v-if done -->
         <span v-if="animals[idList].is_done == true">
           <h1 class="text my-3 true">{{ animals[idList].name.toUpperCase() }}</h1>
-
           <v-img :src="require(`../assets/img/${animals[idList].img}`)" contain height="400px" class="mt-5 mb-5 imgt" alt="animal" />
           <v-form disabled class="mx-5">
             <v-row class="justify-center mb-5">
-              <v-col cols="12" md="8">
+              <v-col cols="12" md="8" class="pt-10 pb-3">
                 <v-btn class="justify-end mt-5" disabled>GOOD</v-btn>
               </v-col>
             </v-row>
           </v-form></span
         >
 
-        <!-- v-else -->
+        <!-- v-else not done -->
         <span v-else>
           <h1 class="text my-3" :class="created">{{ trickyName }}</h1>
 
@@ -57,6 +56,12 @@
             </v-row>
           </v-form>
         </span>
+        <!-- prevnext -->
+        <div class="d-flex justify-space-between mt-4">
+          <v-btn @click="prev" color="#">Prev</v-btn>
+          <v-btn @click="next" color="#">Next</v-btn>
+        </div>
+        <!-- end of prevnext -->
         <!--Empty Modal -->
         <v-dialog v-model="dialogEmpty" width="500">
           <v-card>
@@ -125,7 +130,9 @@
 .container {
   width: 50%;
 }
-
+h1 {
+  font-family: "Montserrat";
+}
 .card {
   margin-top: 10%;
   position: relative;
@@ -175,7 +182,6 @@ export default {
     count() {
       if (!this.disableBtnFlag) {
         this.disableBtnFlag = true;
-        // something to do
         this.cnt = ++this.cnt;
       }
     },
@@ -222,6 +228,27 @@ export default {
 
     created() {
       this.getRandomWord();
+    },
+
+    prev() {
+      var x = this.$route.params.id;
+
+      if (x == 0) {
+        this.$router.push({ path: `/zoonimal/${this.animals.length - 1}` });
+      } else {
+        x--;
+        this.$router.push({ path: `/zoonimal/${x}` });
+      }
+    },
+    next() {
+      var x = this.$route.params.id;
+
+      if (x == this.animals.length - 1) {
+        this.$router.push({ path: `/zoonimal/0` });
+      } else {
+        x++;
+        this.$router.push({ path: `/zoonimal/${x}` });
+      }
     },
   },
   computed: {
