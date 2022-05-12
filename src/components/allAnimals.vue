@@ -4,15 +4,14 @@
       <div class="content">
         <div class="title text-center"><h1>ZoonimaL</h1></div>
         <div class="menu d-flex justify-space-between">
-          <h2 class="ml-2">Found : y / x</h2>
+          <h2 class="ml-2">Found : / {{ this.animals.length }}</h2>
           <v-btn color="orange mr-2" @click="restart">restart</v-btn>
         </div>
         <v-row justify="center" class="mt-1" align="center">
           <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
-            <v-card height="200px text-center" class="card ma-2" @click="toDetail(`${index}`)">
+            <v-card height="200px text-center" class="card ma-2 py-4" @click="toDetail(`${index}`)">
               <v-img v-if="animal.is_done == true" class="img ma-auto" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
               <v-img v-else class="img ma-auto active" contain height="200px" :src="require(`../assets/img/${animal.img}`)" />
-              <p>{{ animal.is_done }}</p>
             </v-card>
           </v-col>
         </v-row>
@@ -44,6 +43,8 @@
   width: 70%;
 }
 .card {
+  background-color: rgba(235, 235, 235, 0.5);
+  border-radius: 25%;
   transition: 0.5s ease-out;
   position: relative;
   overflow: hidden;
@@ -63,7 +64,6 @@ export default {
 
   data: () => ({
     active: true,
-    x: [1],
   }),
   apollo: {
     animals: {
@@ -80,13 +80,45 @@ export default {
         `;
       },
     },
+    // true: {
+    //   query() {
+    //     return gql`
+    //       query true {
+    //         animals(where: { is_done: { _eq: true } }) {
+    //           id
+    //         }
+    //       }
+    //     `;
+    //   },
+    // },
   },
   methods: {
     toDetail(id) {
       this.$router.push({ path: `/zoonimal/${id}` });
     },
+
+    // true() {
+    //   this.$apollo.query({
+    //     query: gql`
+    //       query {
+    //         animals(where: { is_done: { _eq: true } }) {
+    //           id
+    //         }
+    //       }
+    //     `,
+    //   });
+    // },
     restart() {
-      alert("BELOM DISETTING :P");
+      this.$apollo.mutate({
+        mutation: gql`
+          mutation {
+            update_animals(_set: { is_done: false }, where: { is_done: { _eq: true } }) {
+              affected_rows
+            }
+          }
+        `,
+      });
+      location.reload();
     },
   },
 };

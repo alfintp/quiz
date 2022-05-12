@@ -22,7 +22,7 @@
 
         <!-- v-else not done -->
         <span v-else>
-          <h1 class="text my-3" :class="created">{{ trickyName }}</h1>
+          <h1 class="text my-3 trick" :class="created">{{ trickyName }}</h1>
 
           <v-img :src="require(`../assets/img/${animals[idList].img}`)" contain height="400px" class="img mt-5 mb-5" alt="animal" />
           <v-form class="mx-5" onsubmit="return false">
@@ -33,7 +33,6 @@
                   oninput="this.value = this.value.toUpperCase()"
                   v-model="answer"
                   class="isian justify-center"
-                  :rules="nameRules"
                   :counter="animals[idList].name.length"
                   label="What animal is that "
                   required
@@ -172,7 +171,6 @@ export default {
     newWord: "",
     newImg: "",
     trickyName: "",
-    nameRules: [(v) => !!v || "Answer is required"],
     dialogWrong: false,
     dialogTrue: false,
     dialogEmpty: false,
@@ -202,12 +200,16 @@ export default {
 
     notification() {
       if (!this.answer) {
+        this.answer = "";
+
         return (this.dialogEmpty = true);
       } else if ((this.answer.length != 0) & (this.answer != this.animals[this.idList].name.toUpperCase())) {
+        this.answer = "";
+
         return (this.dialogWrong = true);
       } else {
         this.correctAnswer(this.animals[this.idList].id);
-
+        this.answer = "";
         return (this.dialogTrue = true);
       }
     },
@@ -239,6 +241,11 @@ export default {
         x--;
         this.$router.push({ path: `/zoonimal/${x}` });
       }
+      this.disableBtnFlag = false;
+      this.cnt = 1;
+      this.trickyName = "";
+
+      this.answer = "";
     },
     next() {
       var x = this.$route.params.id;
@@ -249,6 +256,10 @@ export default {
         x++;
         this.$router.push({ path: `/zoonimal/${x}` });
       }
+      this.disableBtnFlag = false;
+      this.cnt = 1;
+      this.trickyName = "";
+      this.answer = "";
     },
   },
   computed: {
