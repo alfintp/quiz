@@ -7,7 +7,7 @@
         </v-col>
         <v-col class="content-title text-start" cols="12" md="6">
           <div class="title-wrapper">
-            <h1 class="mb-6">ZoonimaL</h1>
+            <h1>ZoonimaL</h1>
             <div class="desc">
               <h4 class="mb-6">Many animals disappeared in the zoo, find them all and become a hero</h4>
 
@@ -65,12 +65,11 @@ howToPlay .tutorial {
   filter: brightness(100%);
   transition: 1s;
 }
-.content-title {
-  /* background-color: goldenrod; */
-}
+
 .title-wrapper {
   width: 550px;
 }
+
 .title-wrapper h1 {
   font-size: 100px;
   padding-bottom: 60px;
@@ -78,13 +77,9 @@ howToPlay .tutorial {
   color: brown;
   letter-spacing: 10px;
 }
-.desc {
-  width: 400px;
-}
+
 .desc h4 {
   font-family: "Montserrat";
-}
-.title-wrapper h4 {
-  font-size: 30px;
+  font-size: 38px;
 }
 </style>

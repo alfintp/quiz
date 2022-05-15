@@ -2,9 +2,25 @@
   <div class="bg">
     <v-container class="container">
       <div class="content">
+        <!-- Restart Modal -->
+        <v-dialog v-model="dialogRestart" width="500">
+          <v-card>
+            <v-card-title color="green" class="text-h5 justify-center green darken-1"> THE GAME HAS BEEN RESTARTED </v-card-title>
+
+            <v-img height="700px" contain src="../assets/rat/spon.png"></v-img>
+
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="green darken-1" text @click="dialogRestart = false"> PLAY AGAIN </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!-- end of Restart Modal -->
         <div class="title text-center"><h1>ZoonimaL</h1></div>
-        <div class="menu d-flex justify-space-between">
-          <h2 class="ml-2">Found : / {{ this.animals.length }}</h2>
+        <div class="menu d-flex justify-end">
+          <!-- <h2 class="ml-2">Found : {{ animalz.length }} / {{ animals.length }}</h2> -->
           <v-btn color="orange mr-2" @click="restart">restart</v-btn>
         </div>
         <v-row justify="center" class="mt-1" align="center">
@@ -64,6 +80,7 @@ export default {
 
   data: () => ({
     active: true,
+    dialogRestart: false,
   }),
   apollo: {
     animals: {
@@ -79,35 +96,47 @@ export default {
           }
         `;
       },
+      subscribeToMore: {
+        document: gql`
+          subscription MySubscription {
+            animals {
+              id
+              name
+              is_done
+              img
+            }
+          }
+        `,
+        updateQuery: (previousResult, { subscriptionData }) => {
+          console.log(previousResult);
+          console.log(subscriptionData);
+          return {
+            animals: subscriptionData.data.animals,
+          };
+        },
+      },
     },
-    // true: {
-    //   query() {
-    //     return gql`
-    //       query true {
-    //         animals(where: { is_done: { _eq: true } }) {
-    //           id
-    //         }
-    //       }
-    //     `;
-    //   },
-    // },
+
+    // length bernilai true
+    animalz: {
+      query() {
+        return gql`
+          query animalz {
+            animals: animals(where: { is_done: { _eq: true } }) {
+              id
+            }
+          }
+        `;
+      },
+
+      update: (data) => data.animals,
+    },
   },
   methods: {
     toDetail(id) {
       this.$router.push({ path: `/zoonimal/${id}` });
     },
 
-    // true() {
-    //   this.$apollo.query({
-    //     query: gql`
-    //       query {
-    //         animals(where: { is_done: { _eq: true } }) {
-    //           id
-    //         }
-    //       }
-    //     `,
-    //   });
-    // },
     restart() {
       this.$apollo.mutate({
         mutation: gql`
@@ -118,7 +147,7 @@ export default {
           }
         `,
       });
-      location.reload();
+      this.dialogRestart = true;
     },
   },
 };
