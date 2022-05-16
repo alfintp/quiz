@@ -23,6 +23,8 @@
           <!-- <h2 class="ml-2">Found : {{ animalz.length }} / {{ animals.length }}</h2> -->
           <v-btn color="orange mr-2" @click="restart">restart</v-btn>
         </div>
+        <div v-if="$apollo.loading">Loading...</div>
+
         <v-row justify="center" class="mt-1" align="center">
           <v-col v-for="(animal, index) in animals" :key="index" cols="12" md="4">
             <v-card height="200px text-center" class="card ma-2 py-4" @click="toDetail(`${index}`)">

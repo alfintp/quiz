@@ -7,6 +7,7 @@
             <v-icon size="40px" class="close" color="#ff0000"> mdi-close-box </v-icon>
           </router-link>
         </v-flex>
+
         <!-- v-if done -->
         <span v-if="animals[idList].is_done == true">
           <h1 class="text my-3 true">{{ animals[idList].name.toUpperCase() }}</h1>
