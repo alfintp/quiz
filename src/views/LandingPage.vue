@@ -37,6 +37,9 @@ export default {
   components: {
     howToPlay,
   },
+  mounted: function () {
+    document.title = "ZoonimaL";
+  },
 };
 </script>
 <style scoped>
